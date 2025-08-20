@@ -1,27 +1,28 @@
-# Changelog - Actividad Obligatoria N°1
+# Changelog - SistemaProductoraVideos
 
 ## [Actividad Obligatoria N°1]
 
-### Analista de Requerimientos - 
-- Feature branch: feature/analista-requerimientos-add-introduccion-md
-- Issue: #1 Documentar requisitos funcionales y no funcionales
-- Pull Request: #5
-- Aporte: Identificación y documentación de 5 RF y 5 RNF en introduccion.md
+### Integrantes y roles
+- **Bartomioli Alejandro** - Analista de Requerimientos
+- **Franco Alegranza** - Modelador de Casos de Uso
+- **Integrante 3** - Diseñador de Clases Iniciales
+- **Santiago Medel Márquez** - Documentador y Coordinador de Repositorio
 
-### Modelador de Casos de Uso - 
-- Feature branch: feature/modelador-casos-uso-update-use-case-1
-- Issue: #2 Redacción de casos de uso
-- Pull Request: #6
-- Aporte: Desarrollo de 5 casos de uso en introduccion.md
+---
 
-### Diseñador de Clases Iniciales - 
-- Feature branch: feature/diseniador-clases-add-boceto-inicial
-- Issue: #3 Crear diagrama inicial de clases
-- Pull Request: #7
-- Aporte: Boceto en PlantUML y generación de imagen PNG
+### Cambios realizados
 
-### Documentador y Coordinador - Santiago Medel Márquez
-- Feature branch: feature/doc-coord-repo-update-readme-md
-- Issue: #4 Preparar estructura del repo, README y anexos
-- Pull Request: #8
-- Aporte: Armado de carpetas, README.md, anexos.md y coordinación de PRs
+#### Pull Requests (PRs)
+- [#1](https://github.com/santimarM/SistemaProductoraVideos/pull/1) - **Analista de Requerimientos**: agregado de requisitos iniciales en `introduccion.md`.
+- [#2](https://github.com/santimarM/SistemaProductoraVideos/pull/2) - **Modelador de Casos de Uso**: documentación de casos de uso.
+- [#3](https://github.com/santimarM/SistemaProductoraVideos/pull/3) - **Diseñador de Clases Iniciales**: agregado del diagrama inicial de clases.
+- [#4](https://github.com/santimarM/SistemaProductoraVideos/pull/4) - **Documentador y Coordinador**: redacción de README.md, anexos.md y coordinación del repo.
+
+---
+
+### Issues vinculados
+- #1 Requisitos funcionales y no funcionales
+- #2 Casos de uso iniciales
+- #3 Boceto inicial UML
+- #4 Organización del repositorio
+
