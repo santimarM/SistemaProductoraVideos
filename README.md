@@ -6,10 +6,13 @@
 - **Cuatrimestre/Año:** 2° Cuatrimestre / 2025  
 
 ### Integrantes del Grupo
-- Bartomioli Alejandro	 – Matrícula: 153041 - usuario de Git @abartomioli – Rol: Analista de Requerimientos  
-- Franco Alegranza – Matrícula: 96468 - usuario de Git @FrancoAlegranza-sudo – Rol: Modelador de Casos de Uso  
--  – Matrícula:  – Rol: Diseñador de Clases Iniciales  
-- Santiago Medel Márquez – Matrícula: 154076 –  usuario de Git @santimarM - Rol: Documentador y Coordinador  
+
+| Nombre y Apellido          | Matrícula | Usuario de GitHub| 
+|----------------------------|:--------: |-------------------|
+| Bartomioli Alejandro       | 153041    | @abartomioli      |
+| Franco Ezequiel Alegranza  | 96468    | @FrancoAlegranza-sudo |
+| Elio Cesar Nemer Pelayo    | XXXXX     | @username         |
+| Santiago Medel Marquez     | 154076   | @santimarM       |
 
 ---
 
