@@ -8,8 +8,8 @@
 
 ### Integrantes del Grupo
 - Bartomioli Alejandro	 – Matrícula: 153041 - usuario de Git @abartomioli – Rol: Analista de Requerimientos  
-- Franco Alegranza – Matrícula: 96468 - usuario de Git @ – Rol: Modelador de Casos de Uso  
--  – Matrícula: 1003 – Rol: Diseñador de Clases Iniciales  
+- Franco Alegranza – Matrícula: 96468 - usuario de Git @FrancoAlegranza-sudo – Rol: Modelador de Casos de Uso  
+-  – Matrícula:  – Rol: Diseñador de Clases Iniciales  
 - Santiago Medel Márquez – Matrícula: 154076 –  usuario de Git @santimarM - Rol: Documentador y Coordinador  
 
 ---
