@@ -1,5 +1,17 @@
 # SistemaProductoraVideos
 
+SistemaProductoraVideos/
+├── README.md
+├── changelog.md
+├── diagramas/
+│   └── 01-diagrama-clases/
+│       ├── 01-boceto-inicial.puml
+│       └── 01-boceto-inicial.png
+└── anexos/
+    ├── anexos.md
+    └── introduccion.md
+
+
 ## Carátula del Proyecto
 - **Carrera:** Tecnicatura Universitaria en Programación de Sistemas  
 - **Materia:** Diseño Orientado a Objetos  
