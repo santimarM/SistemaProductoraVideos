@@ -104,5 +104,6 @@ Es importante porque permite modularidad, reutilización, escalabilidad y mejor 
 ---
 
 ## Boceto Inicial de Clases
-[Diagrama de Clases] <img width="530" height="488" alt="diseño 1" src="https://github.com/user-attachments/assets/4d994811-6944-40dc-b0e6-89cfa2fb3544" />
+[Diagrama de Clases] 
+<img width="530" height="488" alt="diseño 1" src="https://github.com/user-attachments/assets/4d994811-6944-40dc-b0e6-89cfa2fb3544" />
 
