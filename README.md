@@ -31,6 +31,5 @@ Permitirá organizar clientes, proyectos, empleados, roles, tareas y recursos, m
 ---
 
 ## Diagramas y Diseños
-- [Introducción y especificación inicial](anexos/introduccion.md)  
 - [Anexos](anexos/anexos.md)  
-- [Diagrama de Clases Inicial](diagramas/01-diagrama-clases/01-boceto-inicial.png)
+
