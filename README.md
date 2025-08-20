@@ -1,6 +1,5 @@
 # SistemaProductoraVideos
 
-## Carátula del Proyecto
 - **Carrera:** Tecnicatura Universitaria en Programación de Sistemas  
 - **Materia:** Diseño Orientado a Objetos  
 - **Profesor:** Lic. Matías Velasquez  
