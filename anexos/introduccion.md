@@ -45,16 +45,15 @@ Es importante porque permite modularidad, reutilización, escalabilidad y mejor 
      - Empresa
      - Datos Contacto (Teléfono, Mail, País, Provincia, Localidad, CP, Domicilio)
 
-2. Asignar responsable y roles a proyectos.  
+2. Asignar responsable y roles a proyectos:  
   - Asignación de responsables y roles, por Proyectos, Etapas, Tareas.
 
 3. Gestionar recursos (equipos, locaciones, roles y Usuarios). 
 
 4. Definir y monitorear tareas de producción.  
 
-5. Generar reportes de avance y costos.  
-
-  - Se requiere generar tableros con reportes que contengan filtros de (estado, responsables, proyectos).
+5. Generar reportes de avance y costos:  
+  - Se requiere generar tableros con reportes que contengan filtros de (estado, responsables, proyectos)
 
   - Además, debe contener búsquedas por (Nombre del proyecto, cliente, responsable, etiquetas)
 
@@ -62,9 +61,9 @@ Es importante porque permite modularidad, reutilización, escalabilidad y mejor 
     - Con proyectos Activos/En Riesgos/Retrasados
     - Total vs estimado por proyecto y por etapa (tiempo real vs plan)
     - Cantidad de incidencias/cambios por proyecto
-    -- Volumen por tipo de proyecto y por cliente (mensual)
-    
-6. Notificaciones por mail y WhatsApp.
+    - Volumen por tipo de proyecto y por cliente (mensual)
+
+6. Notificaciones por mail y WhatsApp:
   - Las notificaciones, se deben realizar automáticamente por mail y/o WhatsApp al crear/terminar etapas, asignar/cambiar responsables, detectar retrasos de fechas estipuladas.
 
 ### No Funcionales
