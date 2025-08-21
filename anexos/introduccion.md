@@ -52,7 +52,8 @@ Es importante porque permite modularidad, reutilización, escalabilidad y mejor 
 
 4. Definir y monitorear tareas de producción.  
 
-5. Generar reportes de avance y costos:  
+5. Generar reportes de avance y costos: 
+
   - Se requiere generar tableros con reportes que contengan filtros de (estado, responsables, proyectos)
 
   - Además, debe contener búsquedas por (Nombre del proyecto, cliente, responsable, etiquetas)
