@@ -255,5 +255,4 @@ Es importante porque permite modularidad, reutilización, escalabilidad y mejor 
 
 ## Boceto Inicial de Clases
 
-<img width="530" height="488" alt="diseño 1" src="https://github.com/santimarM/SistemaProductoraVideos/blob/feature/analista-requerimientos-add-introduccion-md/dise%C3%B1o1.png" />
-
+<img width="530" height="488" alt="diseño 1" src="https://github.com/santimarM/SistemaProductoraVideos/blob/feature/analista-requerimientos-add-introduccion-md/diagramas/dise%C3%B1o1.png" />

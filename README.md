@@ -11,7 +11,7 @@
 |----------------------------|:--------: |-------------------|
 | Bartomioli Alejandro       | 153041    | @abartomioli      |
 | Franco Ezequiel Alegranza  | 96468    | @FrancoAlegranza-sudo |
-| Elio Cesar Nemer Pelayo    | XXXXX     | @username         |
+| Elio Cesar Nemer Pelayo    | 156884      | @ELIO58      |
 | Santiago Medel Marquez     | 154076   | @santimarM       |
 
 ---
@@ -32,4 +32,5 @@ Permitirá organizar clientes, proyectos, empleados, roles, tareas y recursos, m
 
 ## Diagramas y Diseños
 - [Anexos](anexos/anexos.md)  
+
 
