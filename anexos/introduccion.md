@@ -21,60 +21,50 @@ Es importante porque permite modularidad, reutilización, escalabilidad y mejor 
 
 ---
 
-## Requisitos Iniciales del Sistema
+## Requisitos Funcionales
 
-### Funcionales
-1. Registrar clientes, proyectos y etapas (Alta/Edición/Eliminación): 
-  - Proyectos:
-     - Contener un nombre
-     - Tipo (Publicidad, VideoClip, Institucional)
-     - Fecha de Inicio y Fecha de Fin.
-     - Responsable General.
-     - Estado (En Curso / Terminado / Pausado)
+### RF1: Crear, Editar y Eliminar Proyecto
+El sistema debe permitir crear, editar y eliminar proyectos audiovisuales.  
+- **Medición**: Cada acción debe completarse en menos de 3 segundos, en el 95% de los intentos.
 
-  - Etapas:
-     - Tipo (Estandar, Personalizada)
-     - Fechas Estimadas
-     - Responsable
-     - Estado (En curso / Pendiente / Terminada)
-     - Prioridad
-     - Comentarios.
+### RF2: Asociar Etapas a Proyectos
+El sistema debe permitir asociar una o más etapas (ej. grabación, edición) a cada proyecto.  
+- **Medición**: Cada proyecto debe tener al menos una etapa asignada al momento de su creación.
 
-  - Cliente:
-     - Nombre
-     - Empresa
-     - Datos Contacto (Teléfono, Mail, País, Provincia, Localidad, CP, Domicilio)
+### RF3: Visualizar Historial de Cambios
+El sistema debe permitir que los usuarios visualicen el historial de cambios de un proyecto en tiempo real.  
+- **Medición**: El historial debe cargar en menos de 2 segundos y reflejar todos los cambios previos.
 
-2. Asignar responsable y roles a proyectos:  
-  - Asignación de responsables y roles, por Proyectos, Etapas, Tareas.
+### RF4: Subida de Archivos Adjuntos
+Los usuarios deben poder subir archivos (videos, imágenes, documentos) asociados a cada etapa del proyecto.  
+- **Medición**: El tiempo máximo de subida de archivos no debe superar los 5 minutos por archivo.
 
-3. Gestionar recursos (equipos, locaciones, roles y Usuarios). 
+### RF5: Agregar Comentarios a Etapas
+El sistema debe permitir a los usuarios agregar comentarios a cada etapa de un proyecto.  
+- **Medición**: Los comentarios deben ser visibles y creables en menos de 1 segundo tras hacer clic en el campo de texto.
 
-4. Definir y monitorear tareas de producción.  
 
-5. Generar reportes de avance y costos: 
+## Requisitos No Funcionales
 
-  - Se requiere generar tableros con reportes que contengan filtros de (estado, responsables, proyectos)
+### RNF1: Alta Disponibilidad
+El sistema debe tener una alta disponibilidad (≥ 99% de tiempo operativo).  
+- **Medición**: El sistema no debe tener más de 5 horas de inactividad al mes.
 
-  - Además, debe contener búsquedas por (Nombre del proyecto, cliente, responsable, etiquetas)
+### RNF2: Facilidad de Uso
+La interfaz debe ser fácil de usar, con un diseño intuitivo.  
+- **Medición**: Los usuarios deben completar una tarea básica (crear un proyecto) en menos de 3 clics.
 
-  - KPI's:
-    - Con proyectos Activos/En Riesgos/Retrasados
-    - Total vs estimado por proyecto y por etapa (tiempo real vs plan)
-    - Cantidad de incidencias/cambios por proyecto
-    - Volumen por tipo de proyecto y por cliente (mensual)
+### RNF3: Compatibilidad con Dispositivos Móviles
+El sistema debe ser completamente responsivo y compatible con dispositivos móviles.  
+- **Medición**: El sistema debe adaptarse a diferentes tamaños de pantalla, sin pérdida de funcionalidad.
 
-6. Notificaciones por mail y WhatsApp:
-  - Las notificaciones, se deben realizar automáticamente por mail y/o WhatsApp al crear/terminar etapas, asignar/cambiar responsables, detectar retrasos de fechas estipuladas.
+### RNF4: Capacidad de Escalabilidad
+El sistema debe ser capaz de manejar más de 500 usuarios simultáneos sin perder rendimiento.  
+- **Medición**: El tiempo de respuesta para cualquier operación no debe superar los 3 segundos bajo carga máxima de usuarios.
 
-### No Funcionales
-1. Interfaz intuitiva y fácil de usar.  
-2. Seguridad en los datos (autenticación, control de acceso por roles, registros de auditoria, backups)
-3. Alta disponibilidad del sistema.  
-4. Escalabilidad para múltiples proyectos en paralelo.  
-5. Integración futura con plataformas de streaming y almacenamiento en la nube. Sin integración de Google Calendar en esta etapa.
-6. Portabilidad: app web (desktop first), móvil-responsive.
-7. Mantenibilidad: arquitectura modular (dominio/servicios/infra); logs y monitoreo básico
+### RNF5: Seguridad y Autenticación
+El sistema debe garantizar autenticación y autorización de usuarios.  
+- **Medición**: El sistema debe cumplir con los estándares de seguridad **OAuth 2.0** y asegurar contraseñas con un nivel de encriptación de **256 bits**.
 
 ---
 
