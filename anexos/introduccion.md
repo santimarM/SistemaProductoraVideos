@@ -21,60 +21,106 @@ Es importante porque permite modularidad, reutilización, escalabilidad y mejor 
 
 ---
 
-## Requisitos Iniciales del Sistema
+# Requisitos Iniciales del Sistema
 
-### Funcionales
-1. Registrar clientes, proyectos y etapas (Alta/Edición/Eliminación): 
-  - Proyectos:
-     - Contener un nombre
-     - Tipo (Publicidad, VideoClip, Institucional)
-     - Fecha de Inicio y Fecha de Fin.
-     - Responsable General.
-     - Estado (En Curso / Terminado / Pausado)
+## Requisitos Funcionales (RF)
 
-  - Etapas:
-     - Tipo (Estandar, Personalizada)
-     - Fechas Estimadas
-     - Responsable
-     - Estado (En curso / Pendiente / Terminada)
-     - Prioridad
-     - Comentarios.
+RF1 — ABM de Clientes
+Debe: crear, editar y eliminar clientes con: nombre, empresa, teléfono, email, país, provincia, localidad, CP y domicilio.
+Criterios: valida formato de email y teléfono; todos los obligatorios completos; toda alta/modificación queda auditada.
 
-  - Cliente:
-     - Nombre
-     - Empresa
-     - Datos Contacto (Teléfono, Mail, País, Provincia, Localidad, CP, Domicilio)
+RF2 — ABM de Proyectos
+Debe: crear/editar/eliminar proyectos con: nombre (único por cliente), tipo ∈ {Publicidad, VideoClip, Institucional}, fechas inicio/fin, responsable general y estado ∈ {En curso, Pausado, Terminado}.
+Criterios: no permite fin < inicio; estado por defecto = En curso (o Pausado si se indica); operaciones auditadas.
 
-2. Asignar responsable y roles a proyectos:  
-  - Asignación de responsables y roles, por Proyectos, Etapas, Tareas.
+RF3 — ABM de Etapas
+Debe: por proyecto, crear/editar/eliminar etapas con: nombre, tipo ∈ {Estándar, Personalizada}, fechas estimadas, responsable, estado ∈ {Pendiente, En curso, Finalizada}, prioridad (entera) y comentarios.
+Criterios: no permite fechas estimadas fuera del rango del proyecto; cambios de estado y datos quedan auditados.
 
-3. Gestionar recursos (equipos, locaciones, roles y Usuarios). 
+RF4 — Workflow de Estado de Etapa
+Debe: validar transiciones: Pendiente → En curso → Finalizada y (opcional) En curso ↔ Pausada.
+Criterios: rechaza transiciones inválidas con mensaje; registra {de, a, usuario, fecha} en auditoría.
 
-4. Definir y monitorear tareas de producción.  
+RF5 — Asignación de Responsables y Roles
+Debe: asignar responsables y roles a proyectos, etapas y tareas, guardando historial de vigencia.
+Criterios: cada etapa tiene exactamente 1 responsable activo; no se permite más de un responsable activo simultáneo; historial consultable.
 
-5. Generar reportes de avance y costos: 
+RF6 — Gestión de Recursos y Reservas
+Debe: administrar recursos (equipos, locaciones, usuarios/roles) y reservarlos por etapa con rango de fechas.
+Criterios: no se permite superposición de reservas del mismo recurso; estados de reserva ∈ {Reservada, Cancelada}.
 
-  - Se requiere generar tableros con reportes que contengan filtros de (estado, responsables, proyectos)
+RF7 — Tareas de Producción por Etapa
+Debe: definir tareas con descripción, estado y vencimiento vinculadas a una etapa.
+Criterios: estados mínimos ∈ {Pendiente, En curso, Hecha}; no se puede cerrar una etapa con tareas Pendiente/En curso.
 
-  - Además, debe contener búsquedas por (Nombre del proyecto, cliente, responsable, etiquetas)
+RF8 — Comentarios y Enlaces
+Debe: registrar comentarios y adjuntar links (Drive/Vimeo/otros) en proyecto y/o etapa.
+Criterios: URL http/https válida; guarda autor y fecha; visibilidad según permisos.
 
-  - KPI's:
-    - Con proyectos Activos/En Riesgos/Retrasados
-    - Total vs estimado por proyecto y por etapa (tiempo real vs plan)
-    - Cantidad de incidencias/cambios por proyecto
-    - Volumen por tipo de proyecto y por cliente (mensual)
+RF9 — Tablero, Filtros y Búsqueda
+Debe: mostrar tablero con filtros por estado, responsable, tipo y cliente; búsqueda por nombre de proyecto, cliente, responsable y etiquetas.
+Criterios: filtros impactan conteos y listados; búsqueda por prefijo y palabra completa.
 
-6. Notificaciones por mail y WhatsApp:
-  - Las notificaciones, se deben realizar automáticamente por mail y/o WhatsApp al crear/terminar etapas, asignar/cambiar responsables, detectar retrasos de fechas estipuladas.
+RF10 — KPIs y Reportes
+Debe: calcular y mostrar, con exportación CSV/PDF:
 
-### No Funcionales
-1. Interfaz intuitiva y fácil de usar.  
-2. Seguridad en los datos (autenticación, control de acceso por roles, registros de auditoria, backups)
-3. Alta disponibilidad del sistema.  
-4. Escalabilidad para múltiples proyectos en paralelo.  
-5. Integración futura con plataformas de streaming y almacenamiento en la nube. Sin integración de Google Calendar en esta etapa.
-6. Portabilidad: app web (desktop first), móvil-responsive.
-7. Mantenibilidad: arquitectura modular (dominio/servicios/infra); logs y monitoreo básico
+Proyectos Activos/En riesgo/Retrasados (En riesgo si desviación de fecha estimada > 20% o faltan ≤ 3 días y hay tareas abiertas; Retrasado si vencida fecha estimada de fin).
+
+Total vs estimado por proyecto y por etapa (tiempo real vs plan).
+
+Incidencias/cambios por proyecto.
+
+Volumen mensual por tipo de proyecto y por cliente.
+Criterios: resultados reproducibles con la misma data y filtros.
+
+RF11 — Notificaciones Automáticas (Email/WhatsApp)
+Debe: notificar al crear/finalizar etapas, al asignar/cambiar responsables y al detectar retrasos.
+Criterios: latencia evento→mensaje ≤ 60 s p95; log de resultado (enviado/error/reintento) y destinatarios.
+
+
+## Requisitos No Funcionales (RNF)
+
+RNF1 — Disponibilidad (Producto)
+Debe: disponibilidad mensual ≥ 99,5% en horario hábil (L–V 08:30–17:30).
+Métrica: indisponibilidad acumulada ≤ 3h 39m/mes en ese horario.
+
+RNF2 — Rendimiento (Producto)
+Debe:
+
+Listado con filtros: < 2 s p90 con 5k proyectos / 50k etapas.
+
+Dashboard/KPIs: < 3 s p90.
+
+Búsqueda simple: < 1,5 s p90.
+Métrica: tiempos de respuesta medidos en entorno de prueba con dataset objetivo.
+
+RNF3 — Latencia de Notificaciones (Producto)
+Debe: pipeline evento→notificación ≤ 60 s p95 (ver RF11).
+Métrica: distribución de latencias por tipo de evento.
+
+RNF4 — Usabilidad (Producto)
+Debe: tras 4 h de capacitación, usuarios internos ejecutan tareas típicas con ≤ 2 errores/hora; encuesta SUS ≥ 75 a la semana.
+Métrica: pruebas de usabilidad y cuestionario SUS.
+
+RNF5 — Seguridad y Acceso (Organización)
+Debe: autenticación nominativa y control de acceso por rol (Admin/Responsable/Lector); toda operación crítica auditada.
+Métrica: registro de auditoría completo y revisiones periódicas.
+
+RNF6 — Respaldo y Recuperación (Organización)
+Debe: RPO ≤ 24 h y RTO ≤ 4 h para la base de datos; pruebas de restauración trimestrales documentadas.
+Métrica: evidencia de última copia y último restore exitoso.
+
+RNF7 — Escalabilidad (Producto)
+Debe: soportar 200 usuarios concurrentes manteniendo métricas de rendimiento; dataset objetivo 10k proyectos / 100k etapas sin degradación p90.
+Métrica: prueba de carga.
+
+RNF8 — Portabilidad/Compatibilidad (Producto)
+Debe: web “desktop-first” y responsive; navegadores soportados = últimas 2 versiones de Chrome, Edge y Firefox; móviles con ancho ≥ 360 px.
+Métrica: matriz de compatibilidad en QA.
+
+RNF9 — Mantenibilidad (Organización)
+Debe: arquitectura modular (dominio/servicios/infra), logging y monitoreo básico; tiempo medio de corrección de bug severidad media ≤ 3 días hábiles.
+Métrica: KPIs de mantenimiento y registros de incidentes.
 
 ---
 
