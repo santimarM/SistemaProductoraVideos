@@ -21,6 +21,7 @@ Es importante porque permite modularidad, reutilización, escalabilidad y mejor 
 
 ---
 
+
 # Requisitos Iniciales del Sistema
 
 ## Requisitos Funcionales (RF)
@@ -121,6 +122,52 @@ Métrica: matriz de compatibilidad en QA.
 RNF9 — Mantenibilidad (Organización)
 Debe: arquitectura modular (dominio/servicios/infra), logging y monitoreo básico; tiempo medio de corrección de bug severidad media ≤ 3 días hábiles.
 Métrica: KPIs de mantenimiento y registros de incidentes.
+=======
+## Requisitos Funcionales
+
+### RF1: Crear, Editar y Eliminar Proyecto
+El sistema debe permitir crear, editar y eliminar proyectos audiovisuales.  
+- **Medición**: Cada acción debe completarse en menos de 3 segundos, en el 95% de los intentos.
+
+### RF2: Asociar Etapas a Proyectos
+El sistema debe permitir asociar una o más etapas (ej. grabación, edición) a cada proyecto.  
+- **Medición**: Cada proyecto debe tener al menos una etapa asignada al momento de su creación.
+
+### RF3: Visualizar Historial de Cambios
+El sistema debe permitir que los usuarios visualicen el historial de cambios de un proyecto en tiempo real.  
+- **Medición**: El historial debe cargar en menos de 2 segundos y reflejar todos los cambios previos.
+
+### RF4: Subida de Archivos Adjuntos
+Los usuarios deben poder subir archivos (videos, imágenes, documentos) asociados a cada etapa del proyecto.  
+- **Medición**: El tiempo máximo de subida de archivos no debe superar los 5 minutos por archivo.
+
+### RF5: Agregar Comentarios a Etapas
+El sistema debe permitir a los usuarios agregar comentarios a cada etapa de un proyecto.  
+- **Medición**: Los comentarios deben ser visibles y creables en menos de 1 segundo tras hacer clic en el campo de texto.
+
+
+## Requisitos No Funcionales
+
+### RNF1: Alta Disponibilidad
+El sistema debe tener una alta disponibilidad (≥ 99% de tiempo operativo).  
+- **Medición**: El sistema no debe tener más de 5 horas de inactividad al mes.
+
+### RNF2: Facilidad de Uso
+La interfaz debe ser fácil de usar, con un diseño intuitivo.  
+- **Medición**: Los usuarios deben completar una tarea básica (crear un proyecto) en menos de 3 clics.
+
+### RNF3: Compatibilidad con Dispositivos Móviles
+El sistema debe ser completamente responsivo y compatible con dispositivos móviles.  
+- **Medición**: El sistema debe adaptarse a diferentes tamaños de pantalla, sin pérdida de funcionalidad.
+
+### RNF4: Capacidad de Escalabilidad
+El sistema debe ser capaz de manejar más de 500 usuarios simultáneos sin perder rendimiento.  
+- **Medición**: El tiempo de respuesta para cualquier operación no debe superar los 3 segundos bajo carga máxima de usuarios.
+
+### RNF5: Seguridad y Autenticación
+El sistema debe garantizar autenticación y autorización de usuarios.  
+- **Medición**: El sistema debe cumplir con los estándares de seguridad **OAuth 2.0** y asegurar contraseñas con un nivel de encriptación de **256 bits**.
+
 
 ---
 
