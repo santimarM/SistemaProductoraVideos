@@ -1,4 +1,4 @@
-# Introducción
+# Anexo - Introducción al Diseño Orientado a Objetos
 
 ## Paradigma Orientado a Objetos
 El paradigma orientado a objetos (POO) se centra en modelar el software a partir de **objetos** que representan entidades del mundo real, incluyendo atributos (datos) y métodos (comportamiento).  
@@ -301,4 +301,4 @@ Métrica: KPIs de mantenimiento y registros de incidentes.
 
 ## Boceto Inicial de Clases
 
-<img width="530" height="488" alt="diseño 1" src="https://github.com/santimarM/SistemaProductoraVideos/blob/feature/analista-requerimientos-add-introduccion-md/diagramas/dise%C3%B1o1.png" />
+<img width="530" height="488" alt="diseño 1" src="https://github.com/santimarM/SistemaProductoraVideos/blob/feature/analista-requerimientos-add-introduccion-md/diagramas/01-boceto-incial.png" />

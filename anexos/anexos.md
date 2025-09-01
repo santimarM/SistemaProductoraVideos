@@ -1,3 +1,3 @@
 # Anexos
 
-- [Introducción y especificación inicial](introduccion.md)
+- [Anexo - Introducción al Diseño Orientado a Objetos](introduccion.md)
