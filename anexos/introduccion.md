@@ -348,4 +348,4 @@ El sistema debe garantizar autenticación y autorización de usuarios.
 
 ## Boceto Inicial de Clases
 
-<img width="530" height="488" alt="diseño 1" src="https://github.com/santimarM/SistemaProductoraVideos/blob/feature/analista-requerimientos-add-introduccion-md/diagramas/01-boceto-incial.png" />
+<img width="530" height="488" alt="diseño 1" src="https://github.com/santimarM/SistemaProductoraVideos/blob/feature/analista-requerimientos-add-introduccion-md/diagramas/01-diagrama-clases/01-boceto-incial.png" />
