@@ -1,4 +1,4 @@
-# Introducción
+# Anexo - Introducción al Diseño Orientado a Objetos
 
 ## Paradigma Orientado a Objetos
 El paradigma orientado a objetos (POO) se centra en modelar el software a partir de **objetos** que representan entidades del mundo real, incluyendo atributos (datos) y métodos (comportamiento).  
@@ -21,60 +21,153 @@ Es importante porque permite modularidad, reutilización, escalabilidad y mejor 
 
 ---
 
-## Requisitos Iniciales del Sistema
 
-### Funcionales
-1. Registrar clientes, proyectos y etapas (Alta/Edición/Eliminación): 
-  - Proyectos:
-     - Contener un nombre
-     - Tipo (Publicidad, VideoClip, Institucional)
-     - Fecha de Inicio y Fecha de Fin.
-     - Responsable General.
-     - Estado (En Curso / Terminado / Pausado)
+# Requisitos Iniciales del Sistema
 
-  - Etapas:
-     - Tipo (Estandar, Personalizada)
-     - Fechas Estimadas
-     - Responsable
-     - Estado (En curso / Pendiente / Terminada)
-     - Prioridad
-     - Comentarios.
+## Requisitos Funcionales (RF)
 
-  - Cliente:
-     - Nombre
-     - Empresa
-     - Datos Contacto (Teléfono, Mail, País, Provincia, Localidad, CP, Domicilio)
+RF1 — ABM de Clientes
+Debe: crear, editar y eliminar clientes con: nombre, empresa, teléfono, email, país, provincia, localidad, CP y domicilio.
+Criterios: valida formato de email y teléfono; todos los obligatorios completos; toda alta/modificación queda auditada.
 
-2. Asignar responsable y roles a proyectos:  
-  - Asignación de responsables y roles, por Proyectos, Etapas, Tareas.
+RF2 — ABM de Proyectos
+Debe: crear/editar/eliminar proyectos con: nombre (único por cliente), tipo ∈ {Publicidad, VideoClip, Institucional}, fechas inicio/fin, responsable general y estado ∈ {En curso, Pausado, Terminado}.
+Criterios: no permite fin < inicio; estado por defecto = En curso (o Pausado si se indica); operaciones auditadas.
 
-3. Gestionar recursos (equipos, locaciones, roles y Usuarios). 
+RF3 — ABM de Etapas
+Debe: por proyecto, crear/editar/eliminar etapas con: nombre, tipo ∈ {Estándar, Personalizada}, fechas estimadas, responsable, estado ∈ {Pendiente, En curso, Finalizada}, prioridad (entera) y comentarios.
+Criterios: no permite fechas estimadas fuera del rango del proyecto; cambios de estado y datos quedan auditados.
 
-4. Definir y monitorear tareas de producción.  
+RF4 — Workflow de Estado de Etapa
+Debe: validar transiciones: Pendiente → En curso → Finalizada y (opcional) En curso ↔ Pausada.
+Criterios: rechaza transiciones inválidas con mensaje; registra {de, a, usuario, fecha} en auditoría.
 
-5. Generar reportes de avance y costos: 
+RF5 — Asignación de Responsables y Roles
+Debe: asignar responsables y roles a proyectos, etapas y tareas, guardando historial de vigencia.
+Criterios: cada etapa tiene exactamente 1 responsable activo; no se permite más de un responsable activo simultáneo; historial consultable.
 
-  - Se requiere generar tableros con reportes que contengan filtros de (estado, responsables, proyectos)
+RF6 — Gestión de Recursos y Reservas
+Debe: administrar recursos (equipos, locaciones, usuarios/roles) y reservarlos por etapa con rango de fechas.
+Criterios: no se permite superposición de reservas del mismo recurso; estados de reserva ∈ {Reservada, Cancelada}.
 
-  - Además, debe contener búsquedas por (Nombre del proyecto, cliente, responsable, etiquetas)
+RF7 — Tareas de Producción por Etapa
+Debe: definir tareas con descripción, estado y vencimiento vinculadas a una etapa.
+Criterios: estados mínimos ∈ {Pendiente, En curso, Hecha}; no se puede cerrar una etapa con tareas Pendiente/En curso.
 
-  - KPI's:
-    - Con proyectos Activos/En Riesgos/Retrasados
-    - Total vs estimado por proyecto y por etapa (tiempo real vs plan)
-    - Cantidad de incidencias/cambios por proyecto
-    - Volumen por tipo de proyecto y por cliente (mensual)
+RF8 — Comentarios y Enlaces
+Debe: registrar comentarios y adjuntar links (Drive/Vimeo/otros) en proyecto y/o etapa.
+Criterios: URL http/https válida; guarda autor y fecha; visibilidad según permisos.
 
-6. Notificaciones por mail y WhatsApp:
-  - Las notificaciones, se deben realizar automáticamente por mail y/o WhatsApp al crear/terminar etapas, asignar/cambiar responsables, detectar retrasos de fechas estipuladas.
+RF9 — Tablero, Filtros y Búsqueda
+Debe: mostrar tablero con filtros por estado, responsable, tipo y cliente; búsqueda por nombre de proyecto, cliente, responsable y etiquetas.
+Criterios: filtros impactan conteos y listados; búsqueda por prefijo y palabra completa.
 
-### No Funcionales
-1. Interfaz intuitiva y fácil de usar.  
-2. Seguridad en los datos (autenticación, control de acceso por roles, registros de auditoria, backups)
-3. Alta disponibilidad del sistema.  
-4. Escalabilidad para múltiples proyectos en paralelo.  
-5. Integración futura con plataformas de streaming y almacenamiento en la nube. Sin integración de Google Calendar en esta etapa.
-6. Portabilidad: app web (desktop first), móvil-responsive.
-7. Mantenibilidad: arquitectura modular (dominio/servicios/infra); logs y monitoreo básico
+RF10 — KPIs y Reportes
+Debe: calcular y mostrar, con exportación CSV/PDF:
+
+Proyectos Activos/En riesgo/Retrasados (En riesgo si desviación de fecha estimada > 20% o faltan ≤ 3 días y hay tareas abiertas; Retrasado si vencida fecha estimada de fin).
+
+Total vs estimado por proyecto y por etapa (tiempo real vs plan).
+
+Incidencias/cambios por proyecto.
+
+Volumen mensual por tipo de proyecto y por cliente.
+Criterios: resultados reproducibles con la misma data y filtros.
+
+RF11 — Notificaciones Automáticas (Email/WhatsApp)
+Debe: notificar al crear/finalizar etapas, al asignar/cambiar responsables y al detectar retrasos.
+Criterios: latencia evento→mensaje ≤ 60 s p95; log de resultado (enviado/error/reintento) y destinatarios.
+
+
+## Requisitos No Funcionales (RNF)
+
+RNF1 — Disponibilidad (Producto)
+Debe: disponibilidad mensual ≥ 99,5% en horario hábil (L–V 08:30–17:30).
+Métrica: indisponibilidad acumulada ≤ 3h 39m/mes en ese horario.
+
+RNF2 — Rendimiento (Producto)
+Debe:
+
+Listado con filtros: < 2 s p90 con 5k proyectos / 50k etapas.
+
+Dashboard/KPIs: < 3 s p90.
+
+Búsqueda simple: < 1,5 s p90.
+Métrica: tiempos de respuesta medidos en entorno de prueba con dataset objetivo.
+
+RNF3 — Latencia de Notificaciones (Producto)
+Debe: pipeline evento→notificación ≤ 60 s p95 (ver RF11).
+Métrica: distribución de latencias por tipo de evento.
+
+RNF4 — Usabilidad (Producto)
+Debe: tras 4 h de capacitación, usuarios internos ejecutan tareas típicas con ≤ 2 errores/hora; encuesta SUS ≥ 75 a la semana.
+Métrica: pruebas de usabilidad y cuestionario SUS.
+
+RNF5 — Seguridad y Acceso (Organización)
+Debe: autenticación nominativa y control de acceso por rol (Admin/Responsable/Lector); toda operación crítica auditada.
+Métrica: registro de auditoría completo y revisiones periódicas.
+
+RNF6 — Respaldo y Recuperación (Organización)
+Debe: RPO ≤ 24 h y RTO ≤ 4 h para la base de datos; pruebas de restauración trimestrales documentadas.
+Métrica: evidencia de última copia y último restore exitoso.
+
+RNF7 — Escalabilidad (Producto)
+Debe: soportar 200 usuarios concurrentes manteniendo métricas de rendimiento; dataset objetivo 10k proyectos / 100k etapas sin degradación p90.
+Métrica: prueba de carga.
+
+RNF8 — Portabilidad/Compatibilidad (Producto)
+Debe: web “desktop-first” y responsive; navegadores soportados = últimas 2 versiones de Chrome, Edge y Firefox; móviles con ancho ≥ 360 px.
+Métrica: matriz de compatibilidad en QA.
+
+RNF9 — Mantenibilidad (Organización)
+Debe: arquitectura modular (dominio/servicios/infra), logging y monitoreo básico; tiempo medio de corrección de bug severidad media ≤ 3 días hábiles.
+Métrica: KPIs de mantenimiento y registros de incidentes.
+=======
+## Requisitos Funcionales
+
+### RF1: Crear, Editar y Eliminar Proyecto
+El sistema debe permitir crear, editar y eliminar proyectos audiovisuales.  
+- **Medición**: Cada acción debe completarse en menos de 3 segundos, en el 95% de los intentos.
+
+### RF2: Asociar Etapas a Proyectos
+El sistema debe permitir asociar una o más etapas (ej. grabación, edición) a cada proyecto.  
+- **Medición**: Cada proyecto debe tener al menos una etapa asignada al momento de su creación.
+
+### RF3: Visualizar Historial de Cambios
+El sistema debe permitir que los usuarios visualicen el historial de cambios de un proyecto en tiempo real.  
+- **Medición**: El historial debe cargar en menos de 2 segundos y reflejar todos los cambios previos.
+
+### RF4: Subida de Archivos Adjuntos
+Los usuarios deben poder subir archivos (videos, imágenes, documentos) asociados a cada etapa del proyecto.  
+- **Medición**: El tiempo máximo de subida de archivos no debe superar los 5 minutos por archivo.
+
+### RF5: Agregar Comentarios a Etapas
+El sistema debe permitir a los usuarios agregar comentarios a cada etapa de un proyecto.  
+- **Medición**: Los comentarios deben ser visibles y creables en menos de 1 segundo tras hacer clic en el campo de texto.
+
+
+## Requisitos No Funcionales
+
+### RNF1: Alta Disponibilidad
+El sistema debe tener una alta disponibilidad (≥ 99% de tiempo operativo).  
+- **Medición**: El sistema no debe tener más de 5 horas de inactividad al mes.
+
+### RNF2: Facilidad de Uso
+La interfaz debe ser fácil de usar, con un diseño intuitivo.  
+- **Medición**: Los usuarios deben completar una tarea básica (crear un proyecto) en menos de 3 clics.
+
+### RNF3: Compatibilidad con Dispositivos Móviles
+El sistema debe ser completamente responsivo y compatible con dispositivos móviles.  
+- **Medición**: El sistema debe adaptarse a diferentes tamaños de pantalla, sin pérdida de funcionalidad.
+
+### RNF4: Capacidad de Escalabilidad
+El sistema debe ser capaz de manejar más de 500 usuarios simultáneos sin perder rendimiento.  
+- **Medición**: El tiempo de respuesta para cualquier operación no debe superar los 3 segundos bajo carga máxima de usuarios.
+
+### RNF5: Seguridad y Autenticación
+El sistema debe garantizar autenticación y autorización de usuarios.  
+- **Medición**: El sistema debe cumplir con los estándares de seguridad **OAuth 2.0** y asegurar contraseñas con un nivel de encriptación de **256 bits**.
+
 
 ---
 
@@ -255,5 +348,4 @@ Es importante porque permite modularidad, reutilización, escalabilidad y mejor 
 
 ## Boceto Inicial de Clases
 
-<img width="530" height="488" alt="diseño 1" src="https://github.com/user-attachments/assets/4d994811-6944-40dc-b0e6-89cfa2fb3544" />
-
+<img width="530" height="488" alt="diseño 1" src="https://github.com/santimarM/SistemaProductoraVideos/blob/feature/analista-requerimientos-add-introduccion-md/diagramas/01-boceto-incial.png" />

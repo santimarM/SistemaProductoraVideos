@@ -31,7 +31,8 @@ Permitirá organizar clientes, proyectos, empleados, roles, tareas y recursos, m
 ---
 
 ## Diagramas y Diseños
-- [Anexos](anexos/anexos.md)  
+- [Anexo - Introducción al Diseño Orientado a Objetos](anexos/anexos.md)  
+
 
 
 
