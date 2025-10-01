@@ -1,0 +1,123 @@
+@startuml
+
+class Cliente {
+  -id: int
+  -nombre: string
+  -empresa: string
+  -telefono: string
+  -email: string
+  -domicilio: string
+}
+
+
+class Proyecto {
+  -id: int
+  -nombre: string
+  -tipo: string           
+  -fechaInicio: date
+  -fechaFin: date
+  -estado: string         
+  +registrar()
+  +cambiarEstado()
+}
+
+
+class Etapa {
+  -id: int
+  -nombre: string
+  -prioridad: int
+  -estado: string         
+  -fecEstInicio: date
+  -fecEstFin: date
+  -fecRealInicio: date
+  -fecRealFin: date
+  +cambiarEstado()
+}
+
+class Tarea {
+  -id: int
+  -descripcion: string
+  -estado: string
+  +actualizarEstado()
+}
+
+
+class Recurso {
+  -id: int
+  -tipo: string           
+  -descripcion: string
+}
+
+class Reserva {
+  -id: int
+  -desde: datetime
+  -hasta: datetime
+  -estado: string         
+}
+
+
+class Empleado {
+  -id: int
+  -nombre: string
+  -rolBase: string
+}
+
+class AsignacionProyecto {
+  -id: int
+  -rol: string            
+  -desde: date
+  -hasta: date
+}
+
+
+class Comentario {
+  -id: int
+  -texto: string
+  -fecha: datetime
+  -autor: string
+}
+
+
+class Link {
+  -id: int
+  -url: string
+  -descripcion: string
+  -fecha: datetime
+}
+
+
+class AsignacionEtapa {
+  -id: int
+  -rol: string            
+  -desde: date
+  -hasta: date
+}
+
+
+
+' Relaciones
+Cliente "1" -- "0..*" Proyecto
+Proyecto "1" -- "0..*" Etapa
+Etapa "1" -- "0..*" Tarea
+
+
+' N<->N con atributos -> clases asociación
+Proyecto "1" -- "0..*" AsignacionProyecto
+Empleado "1" -- "0..*" AsignacionProyecto
+
+
+Etapa "1" -- "0..*" AsignacionEtapa
+Empleado "1" -- "0..*" AsignacionEtapa
+
+
+' Recursos por etapa (en tiempo)
+Recurso "1" -- "0..*" Reserva
+Etapa "1" -- "0..*" Reserva
+
+
+Proyecto "1" -- "0..*" Comentario
+Etapa "1" -- "0..*" Comentario
+Proyecto "1" -- "0..*" Link
+Etapa "1" -- "0..*" Link
+
+@enduml
